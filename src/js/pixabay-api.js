@@ -1,24 +1,16 @@
-const form = document.getElementById('search-form');
-const gallery = document.querySelector('.gallery');
+import axios from 'axios';
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const query = e.target.elements.query.value.trim();
-  if (!query) return;
+const API_KEY = '48883133-b45715c17a0625272bb81a0a3';
+const BASE_URL = 'https://pixabay.com/api/';
 
-  const response = await fetch(`https://pixabay.com/api/?key=YOUR_API_KEY&q=${encodeURIComponent(query)}&image_type=photo`);
-  const data = await response.json();
-
-  createGallery(data.hits);
-});
-
-function createGallery(images) {
-  const markup = images.map(({ webformatURL, largeImageURL, tags }) => `
-    <a href="${largeImageURL}" class="gallery__item">
-      <img src="${webformatURL}" alt="${tags}" class="gallery__image" />
-    </a>
-  `).join('');
-
-  gallery.innerHTML = markup;
-  // Ініціалізація SimpleLightbox або іншої бібліотеки для модального перегляду
+export function fetchImages(query) {
+  return axios
+    .get(
+      `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`
+    )
+    .then(response => response.data.hits)
+    .catch(error => {
+      console.error('Error fetching images:', error);
+      return [];
+    });
 }
