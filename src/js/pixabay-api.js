@@ -6,7 +6,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 export function fetchImages(query) {
   return axios
     .get(
-      `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`
+      `${BASE_URL}?key=${API_KEY}&q=${encodedQuery}&image_type=photo&orientation=horizontal&safesearch=true`
     )
     .then(response => response.data.hits)
     .catch(error => {

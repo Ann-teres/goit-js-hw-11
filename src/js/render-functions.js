@@ -8,7 +8,7 @@ export function renderGallery(images) {
   gallery.innerHTML = images
     .map(
       image => `
-        <div class="gallery-item">
+        <div class="gallery">
             <a href="${image.largeImageURL}" class="gallery-link">
                 <img src="${image.webformatURL}" alt="${image.tags}" class="gallery-image" />
             </a>
