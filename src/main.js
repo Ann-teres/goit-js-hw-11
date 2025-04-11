@@ -4,6 +4,11 @@ import { renderGallery } from './js/render-functions.js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+iziToast.success({
+  title: 'OK',
+  message: 'Тепер працює через Vite!',
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.search-form');
   const inputField = document.querySelector("input[name='searchQuery']");
@@ -58,5 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
     inputField.style.border = inputField.value.trim()
       ? '2px solid blue'
       : '1px solid #808080';
+      
   });
 });
+
+console.log(images);
+

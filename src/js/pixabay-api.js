@@ -4,6 +4,8 @@ const API_KEY = '48883133-b45715c17a0625272bb81a0a3';
 const BASE_URL = 'https://pixabay.com/api/';
 
 export function fetchImages(query) {
+  const encodedQuery = encodeURIComponent(query); // 🟢 Додано
+
   return axios
     .get(
       `${BASE_URL}?key=${API_KEY}&q=${encodedQuery}&image_type=photo&orientation=horizontal&safesearch=true`
