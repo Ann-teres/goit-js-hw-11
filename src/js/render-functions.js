@@ -6,18 +6,18 @@ let lightbox;
 export function renderGallery(images) {
   const gallery = document.querySelector('.gallery');
 
-  // Генеруємо лише <a> елементи всередині .gallery
   gallery.innerHTML = images
     .map(
       image => `
-        <a href="${image.largeImageURL}" class="gallery-link">
-          <img src="${image.webformatURL}" alt="${image.tags}" class="gallery-image" />
-        </a>
+        <li class="gallery-item">
+          <a href="${image.largeImageURL}" class="gallery-link">
+            <img src="${image.webformatURL}" alt="${image.tags}" class="gallery-image" />
+          </a>
+        </li>
       `
     )
     .join('');
 
-  // Ініціалізація або оновлення lightbox
   if (!lightbox) {
     lightbox = new SimpleLightbox('.gallery a', {
       captionsData: 'alt',
