@@ -1,16 +1,5 @@
-import { fetchImages } from './js/pixabay-api.js';
-import { renderGallery } from './js/render-functions.js';
-
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-
-iziToast.success({
-  title: 'OK',
-  message: 'Тепер працює через Vite!',
-});
-
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('.search-form');
+  const form = document.querySelector('.form'); // змінено відповідно до HTML
   const inputField = document.querySelector("input[name='searchQuery']");
   const loader = document.querySelector('.loader');
   const gallery = document.querySelector('.gallery');
@@ -38,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const images = await fetchImages(query);
-      loader.style.display = 'none';
+      console.log(images); // <-- тепер правильно
 
       if (images.length === 0) {
         iziToast.error({
@@ -50,12 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       renderGallery(images);
     } catch (error) {
-      loader.style.display = 'none';
       iziToast.error({
         message: 'Something went wrong. Please try again!',
         position: 'topRight',
       });
       console.error('Fetch error:', error);
+    } finally {
+      loader.style.display = 'none'; // оптимізовано
     }
   });
 
@@ -63,9 +53,5 @@ document.addEventListener('DOMContentLoaded', () => {
     inputField.style.border = inputField.value.trim()
       ? '2px solid blue'
       : '1px solid #808080';
-      
   });
 });
-
-console.log(images);
-
