@@ -1,3 +1,9 @@
+import { fetchImages } from './js/pixabay-api.js';
+import { renderGallery } from './js/render-functions.js';
+
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form'); // змінено відповідно до HTML
   const inputField = document.querySelector("input[name='searchQuery']");

@@ -9,11 +9,11 @@ export function renderGallery(images) {
   gallery.innerHTML = images
     .map(
       image => `
-        <li class="gallery-item">
+        <div class="gallery-item">
           <a href="${image.largeImageURL}" class="gallery-link">
             <img src="${image.webformatURL}" alt="${image.tags}" class="gallery-image" />
           </a>
-        </li>
+        </div>
       `
     )
     .join('');
